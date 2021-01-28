@@ -1,14 +1,14 @@
 {
   "name": "higlass-bigwig-datafetcher",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bigwig Data Fetcher for HiGlass",
   "private": false,
-  "author": "Zymergen, Inc.",
+  "author": "Alexander Veit",
   "license": "MIT",
   "contributors": [
     {
-      "name": "Peter Kerpedjiev",
-      "url": "http://github.com/pkerpedjiev"
+      "name": "Alexander Veit",
+      "url": "http://github.com/alexander-veit"
     }
   ],
   "main": "./src/index.js",
