@@ -54,7 +54,7 @@ $ cd higlass-bigwig-datafetcher
 $ npm install
 ```
 
-If you have a local copy of higlass, you can then run this command in the higlass-gff-datafetcher directory:
+If you have a local copy of higlass, you can then run this command in the higlass-bigwig-datafetcher directory:
 
 ```bash
 npm link higlass
