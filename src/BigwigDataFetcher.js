@@ -108,7 +108,6 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
         });
         return this.bwFile.getHeader().then((h) => {
           this.bwFileHeader = h;
-          console.log(this.bwFileHeader)
         });
       } else {
         console.error('Please enter a "url" field to the data config');

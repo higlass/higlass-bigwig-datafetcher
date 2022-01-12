@@ -36,7 +36,7 @@ module.exports = function (config) {
       "karma-jasmine",
       "karma-sourcemap-loader",
       "karma-chrome-launcher",
-      "karma-phantomjs2-launcher",
+      "karma-phantomjs-launcher",
     ],
 
     babelPreprocessor: {
