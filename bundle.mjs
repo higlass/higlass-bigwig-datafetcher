@@ -1,7 +1,6 @@
 import * as esbuild from "esbuild";
-import * as path from "path";
 
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.APP_ENV || 'development';
 
 // These are necessary as long as we use `tape` for tests in the browser.
 // The package relies on many node-isms and must be adapted.
@@ -12,14 +11,12 @@ esbuild.build({
   entryPoints: ["src/index.js"],
   target: 'es2018',
   format: 'esm',
-  splitting: true,
   sourcemap: true,
   bundle: true,
   minify: env === 'production',
-  outdir: "dist",
-  inject: ["src/alias/buffer-shim.js"],
+  outfile: env === 'production' ? 'dist/index.min.js' : 'dist/index.js',
   plugins: [
-    globals({ path: true, fs: true, buffer: false }),
+    globals({ buffer: true }),
     builtins(),
   ],
 });
