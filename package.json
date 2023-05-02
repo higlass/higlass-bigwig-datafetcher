@@ -51,7 +51,6 @@
     "d3-dsv": "^3.0.1",
     "d3-request": "^1.0.6",
     "higlass-register": "^0.3.0",
-    "slugid": "^3.0.0",
-    "buffer": "^6.0.3"
+    "slugid": "^3.0.0"
   }
 }
