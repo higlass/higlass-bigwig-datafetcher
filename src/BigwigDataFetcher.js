@@ -342,7 +342,7 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
 }; // end function wrapper
 
 BBIDataFetcher.config = {
-  type: "bbi",
+  type: "bigwig",
 };
 
 export default BBIDataFetcher;

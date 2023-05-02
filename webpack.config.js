@@ -86,8 +86,7 @@ module.exports = {
                 }),
               ],
             },
-          },
-          "sass-loader", // compiles Sass to CSS
+          }
         ],
       },
       // Extract them HTML files
