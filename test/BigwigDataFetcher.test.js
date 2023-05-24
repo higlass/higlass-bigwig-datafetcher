@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import BBIDataFetcher from '../src/BigWigDataFetcher.js';
+import BBIDataFetcher from '../src/BigwigDataFetcher.js';
 
 describe("Bigwig data fetcher tests", () => {
   describe("BBI data fetcher", () => {
