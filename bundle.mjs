@@ -2,8 +2,6 @@ import * as esbuild from "esbuild";
 
 const env = process.env.APP_ENV || 'development';
 
-// These are necessary as long as we use `tape` for tests in the browser.
-// The package relies on many node-isms and must be adapted.
 import { NodeGlobalsPolyfillPlugin as globals } from '@esbuild-plugins/node-globals-polyfill';
 import { NodeModulesPolyfillPlugin as builtins } from '@esbuild-plugins/node-modules-polyfill';
 
@@ -19,4 +17,5 @@ esbuild.build({
     globals({ buffer: true }),
     builtins(),
   ],
+  watch: process.env.ESBUILD_MODE === 'watch',
 });
