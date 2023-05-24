@@ -16,11 +16,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 18
-      - run: sudo apt-get install xvfb
       - run: npm ci
       - run: npm run test
       - run: npm run build
-      #- run: xvfb-run --auto-servernum npm run test
         env:
           CI: true
 
