@@ -1,6 +1,5 @@
-/* eslint-env node, jasmine */
-import { expect } from "chai";
-import BBIDataFetcher from "../src/BigWigDataFetcher";
+import { describe, expect, it } from 'vitest';
+import BBIDataFetcher from '../src/BigWigDataFetcher.js';
 
 describe("Bigwig data fetcher tests", () => {
   describe("BBI data fetcher", () => {
@@ -13,14 +12,14 @@ describe("Bigwig data fetcher tests", () => {
       }
     );
 
-    it("should fetch the tileset info", (done) => {
+    it("should fetch the tileset info", () => new Promise((done) => {
       df.tilesetInfo((tsInfo) => {
         expect(tsInfo.tile_size).to.eql(1024);
         expect(tsInfo.max_zoom).to.eql(22);
 
         done();
       });
-    });
+    }));
 
     // it("should fetch a tile", (done) => {
     //   df.fetchTilesDebounced(
