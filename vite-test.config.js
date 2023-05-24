@@ -12,7 +12,7 @@ export default defineConfig({
     testTimeout: 15000,
     globals: true,
     environment: 'jsdom',
-    setupFiles: [resolve(__dirname, './vitest.setup.js')],
+    // setupFiles: [resolve(__dirname, './vitest.setup.js')],
     environmentOptions: {
       jsdom: {
         resources: 'usable',
