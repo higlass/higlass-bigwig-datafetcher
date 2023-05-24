@@ -1,7 +1,10 @@
-import { afterAll, vi } from 'vitest';
-global.jest = vi;
+import { beforeAll, afterAll } from 'vitest';
+import fetch from 'node-fetch';
+
+beforeAll(() => {
+  global.fetch = fetch;
+});
 
 afterAll(() => {
-  delete global.jest;
-  delete global.window.jest;
+  delete global.fetch;
 });
