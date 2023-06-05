@@ -11,6 +11,18 @@ The live scripts can be found at:
 
 - https://unpkg.com/higlass-bigwig-datafetcher/dist/higlass-bigwig-datafetcher.min.js
 
+First, register the data fetcher:
+
+```js
+import register from "higlass-register";
+import { BigwigDataFetcher } from "higlass-bigwig-datafetcher";
+
+register(
+  { dataFetcher: BigwigDataFetcher, config: BigwigDataFetcher.config },
+  { pluginType: "dataFetcher" }
+);
+```
+
 Configure the track in your view config; you should be all set from here!
 
 ```
