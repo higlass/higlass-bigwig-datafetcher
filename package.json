@@ -15,9 +15,15 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "exports": {
-    ".": {
-      "import": "./dist/index.js"
-    }
+    "./*": {
+      "import": "./dist/*.js",
+      "require": "./dist/*.js"
+    },
+    "./dist/*": {
+      "import": "./dist/*",
+      "require": "./dist/*"
+    },
+    "./src/*": "./src/*.js"
   },
   "files": [
     "src",
