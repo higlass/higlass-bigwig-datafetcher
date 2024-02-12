@@ -103,9 +103,22 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
 
     loadBBI(dataConfig) {
       if (dataConfig.url) {
-        this.bwFile = new BigWig({
-          filehandle: new RemoteFile(dataConfig.url),
-        });
+        // look for Basic credentials in the URL; if present, extract
+        // them and use them to create an authenticated RemoteFile object
+        let url = new URL(dataConfig.url);
+        const username = url.username;
+        const password = url.password;
+        if (username && password) {
+          dataConfig.url = `${url.protocol}//${url.host}${url.pathname}${url.search}`;
+          this.bwFile = new BigWig({
+            filehandle: new RemoteFile(dataConfig.url, { auth: { username, password } }),
+          });
+        }
+        else {
+          this.bwFile = new BigWig({
+            filehandle: new RemoteFile(dataConfig.url),
+          });
+        }
         return this.bwFile.getHeader().then((h) => {
           this.bwFileHeader = h;
         });

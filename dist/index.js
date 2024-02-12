@@ -2086,10 +2086,10 @@ function v35_default(name, version3, hashfunc) {
   } catch (err2) {
   }
   generateUUID.DNS = DNS;
-  generateUUID.URL = URL;
+  generateUUID.URL = URL2;
   return generateUUID;
 }
-var DNS, URL;
+var DNS, URL2;
 var init_v35 = __esm({
   "node_modules/uuid/dist/esm-browser/v35.js"() {
     init_virtual_process_polyfill();
@@ -2097,7 +2097,7 @@ var init_v35 = __esm({
     init_stringify();
     init_parse();
     DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
-    URL = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
+    URL2 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
   }
 });
 
@@ -12578,9 +12578,19 @@ var BBIDataFetcher = function BBIDataFetcher2(HGC, ...args) {
     }
     loadBBI(dataConfig) {
       if (dataConfig.url) {
-        this.bwFile = new BigWig({
-          filehandle: new RemoteFile(dataConfig.url)
-        });
+        let url = new URL(dataConfig.url);
+        const username = url.username;
+        const password = url.password;
+        if (username && password) {
+          dataConfig.url = `${url.protocol}//${url.host}${url.pathname}${url.search}`;
+          this.bwFile = new BigWig({
+            filehandle: new RemoteFile(dataConfig.url, { auth: { username, password } })
+          });
+        } else {
+          this.bwFile = new BigWig({
+            filehandle: new RemoteFile(dataConfig.url)
+          });
+        }
         return this.bwFile.getHeader().then((h) => {
           this.bwFileHeader = h;
         });
