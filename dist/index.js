@@ -1883,7 +1883,7 @@ var init_buffer = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/rng.js
+// node_modules/uuid/dist/esm-browser/rng.js
 function rng() {
   if (!getRandomValues) {
     getRandomValues = typeof crypto !== "undefined" && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto !== "undefined" && typeof msCrypto.getRandomValues === "function" && msCrypto.getRandomValues.bind(msCrypto);
@@ -1895,30 +1895,30 @@ function rng() {
 }
 var getRandomValues, rnds8;
 var init_rng = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/rng.js"() {
+  "node_modules/uuid/dist/esm-browser/rng.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     rnds8 = new Uint8Array(16);
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/regex.js
+// node_modules/uuid/dist/esm-browser/regex.js
 var regex_default;
 var init_regex = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/regex.js"() {
+  "node_modules/uuid/dist/esm-browser/regex.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/validate.js
+// node_modules/uuid/dist/esm-browser/validate.js
 function validate(uuid) {
   return typeof uuid === "string" && regex_default.test(uuid);
 }
 var validate_default;
 var init_validate = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/validate.js"() {
+  "node_modules/uuid/dist/esm-browser/validate.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_regex();
@@ -1926,7 +1926,7 @@ var init_validate = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/stringify.js
+// node_modules/uuid/dist/esm-browser/stringify.js
 function stringify(arr) {
   var offset = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
   var uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
@@ -1937,7 +1937,7 @@ function stringify(arr) {
 }
 var byteToHex, i, stringify_default;
 var init_stringify = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/stringify.js"() {
+  "node_modules/uuid/dist/esm-browser/stringify.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_validate();
@@ -1949,7 +1949,7 @@ var init_stringify = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/v1.js
+// node_modules/uuid/dist/esm-browser/v1.js
 function v1(options, buf, offset) {
   var i = buf && offset || 0;
   var b = buf || new Array(16);
@@ -2000,7 +2000,7 @@ function v1(options, buf, offset) {
 }
 var _nodeId, _clockseq, _lastMSecs, _lastNSecs, v1_default;
 var init_v1 = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/v1.js"() {
+  "node_modules/uuid/dist/esm-browser/v1.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_rng();
@@ -2011,7 +2011,7 @@ var init_v1 = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/parse.js
+// node_modules/uuid/dist/esm-browser/parse.js
 function parse(uuid) {
   if (!validate_default(uuid)) {
     throw TypeError("Invalid UUID");
@@ -2038,7 +2038,7 @@ function parse(uuid) {
 }
 var parse_default;
 var init_parse = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/parse.js"() {
+  "node_modules/uuid/dist/esm-browser/parse.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_validate();
@@ -2046,7 +2046,7 @@ var init_parse = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/v35.js
+// node_modules/uuid/dist/esm-browser/v35.js
 function stringToBytes(str) {
   str = unescape(encodeURIComponent(str));
   var bytes = [];
@@ -2091,7 +2091,7 @@ function v35_default(name, version3, hashfunc) {
 }
 var DNS, URL;
 var init_v35 = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/v35.js"() {
+  "node_modules/uuid/dist/esm-browser/v35.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_stringify();
@@ -2101,7 +2101,7 @@ var init_v35 = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/md5.js
+// node_modules/uuid/dist/esm-browser/md5.js
 function md5(bytes) {
   if (typeof bytes === "string") {
     var msg = unescape(encodeURIComponent(bytes));
@@ -2245,17 +2245,17 @@ function md5ii(a, b, c, d, x, s, t) {
 }
 var md5_default;
 var init_md5 = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/md5.js"() {
+  "node_modules/uuid/dist/esm-browser/md5.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     md5_default = md5;
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/v3.js
+// node_modules/uuid/dist/esm-browser/v3.js
 var v3, v3_default;
 var init_v3 = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/v3.js"() {
+  "node_modules/uuid/dist/esm-browser/v3.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_v35();
@@ -2265,7 +2265,7 @@ var init_v3 = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/v4.js
+// node_modules/uuid/dist/esm-browser/v4.js
 function v4(options, buf, offset) {
   options = options || {};
   var rnds = options.random || (options.rng || rng)();
@@ -2282,7 +2282,7 @@ function v4(options, buf, offset) {
 }
 var v4_default;
 var init_v4 = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/v4.js"() {
+  "node_modules/uuid/dist/esm-browser/v4.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_rng();
@@ -2291,7 +2291,7 @@ var init_v4 = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/sha1.js
+// node_modules/uuid/dist/esm-browser/sha1.js
 function f(s, x, y, z) {
   switch (s) {
     case 0:
@@ -2365,17 +2365,17 @@ function sha1(bytes) {
 }
 var sha1_default;
 var init_sha1 = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/sha1.js"() {
+  "node_modules/uuid/dist/esm-browser/sha1.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     sha1_default = sha1;
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/v5.js
+// node_modules/uuid/dist/esm-browser/v5.js
 var v5, v5_default;
 var init_v5 = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/v5.js"() {
+  "node_modules/uuid/dist/esm-browser/v5.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_v35();
@@ -2385,17 +2385,17 @@ var init_v5 = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/nil.js
+// node_modules/uuid/dist/esm-browser/nil.js
 var nil_default;
 var init_nil = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/nil.js"() {
+  "node_modules/uuid/dist/esm-browser/nil.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     nil_default = "00000000-0000-0000-0000-000000000000";
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/version.js
+// node_modules/uuid/dist/esm-browser/version.js
 function version2(uuid) {
   if (!validate_default(uuid)) {
     throw TypeError("Invalid UUID");
@@ -2404,7 +2404,7 @@ function version2(uuid) {
 }
 var version_default;
 var init_version = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/version.js"() {
+  "node_modules/uuid/dist/esm-browser/version.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_validate();
@@ -2412,7 +2412,7 @@ var init_version = __esm({
   }
 });
 
-// node_modules/slugid/node_modules/uuid/dist/esm-browser/index.js
+// node_modules/uuid/dist/esm-browser/index.js
 var esm_browser_exports = {};
 __export(esm_browser_exports, {
   NIL: () => nil_default,
@@ -2426,7 +2426,7 @@ __export(esm_browser_exports, {
   version: () => version_default
 });
 var init_esm_browser = __esm({
-  "node_modules/slugid/node_modules/uuid/dist/esm-browser/index.js"() {
+  "node_modules/uuid/dist/esm-browser/index.js"() {
     init_virtual_process_polyfill();
     init_buffer();
     init_v1();
@@ -2447,26 +2447,38 @@ var require_slugid = __commonJS({
     init_virtual_process_polyfill();
     init_buffer();
     var uuid = (init_esm_browser(), __toCommonJS(esm_browser_exports));
+    var toBase64 = (() => {
+      if (typeof Buffer2 !== "undefined") {
+        return (bytes) => Buffer2.from(bytes).toString("base64");
+      }
+      return (bytes) => btoa(String.fromCharCode(...bytes));
+    })();
+    var fromBase64 = (() => {
+      if (typeof Buffer2 !== "undefined") {
+        return (base64) => Buffer2.from(base64, "base64");
+      }
+      return (base64) => Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+    })();
     exports.encode = function(uuid_) {
       var bytes = uuid.parse(uuid_);
-      var base64 = Buffer2.from(bytes).toString("base64");
+      var base64 = toBase64(bytes);
       var slug = base64.replace(/\+/g, "-").replace(/\//g, "_").substring(0, 22);
       return slug;
     };
     exports.decode = function(slug) {
       var base64 = slug.replace(/-/g, "+").replace(/_/g, "/") + "==";
-      return uuid.stringify(Buffer2.from(base64, "base64"));
+      return uuid.stringify(fromBase64(base64));
     };
     exports.v4 = function() {
-      var bytes = uuid.v4(null, Buffer2.alloc(16));
-      var base64 = bytes.toString("base64");
+      var bytes = uuid.v4(null, new Uint8Array(16));
+      var base64 = toBase64(bytes);
       var slug = base64.replace(/\+/g, "-").replace(/\//g, "_").substring(0, 22);
       return slug;
     };
     exports.nice = function() {
-      var bytes = uuid.v4(null, Buffer2.alloc(16));
+      var bytes = uuid.v4(null, new Uint8Array(16));
       bytes[0] = bytes[0] & 127;
-      var base64 = bytes.toString("base64");
+      var base64 = toBase64(bytes);
       var slug = base64.replace(/\+/g, "-").replace(/\//g, "_").substring(0, 22);
       return slug;
     };
@@ -2969,13 +2981,13 @@ var require_AbortablePromiseCache = __commonJS({
     "use strict";
     init_virtual_process_polyfill();
     init_buffer();
-    var __importDefault2 = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     var abortcontroller_ponyfill_1 = require_abortcontroller_ponyfill();
-    var AggregateAbortController_1 = __importDefault2(require_AggregateAbortController());
-    var AggregateStatusReporter_1 = __importDefault2(require_AggregateStatusReporter());
+    var AggregateAbortController_1 = __importDefault(require_AggregateAbortController());
+    var AggregateStatusReporter_1 = __importDefault(require_AggregateStatusReporter());
     var AbortablePromiseCache3 = class {
       constructor({ fill: fill3, cache }) {
         if (typeof fill3 !== "function") {
@@ -3099,11 +3111,11 @@ var require_esm = __commonJS({
     "use strict";
     init_virtual_process_polyfill();
     init_buffer();
-    var __importDefault2 = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
     Object.defineProperty(exports, "__esModule", { value: true });
-    var AbortablePromiseCache_1 = __importDefault2(require_AbortablePromiseCache());
+    var AbortablePromiseCache_1 = __importDefault(require_AbortablePromiseCache());
     exports.default = AbortablePromiseCache_1.default;
   }
 });
@@ -3215,515 +3227,6 @@ var require_localFile = __commonJS({
   "(disabled):node_modules/generic-filehandle/esm/localFile"() {
     init_virtual_process_polyfill();
     init_buffer();
-  }
-});
-
-// node_modules/rxjs/node_modules/tslib/tslib.js
-var require_tslib = __commonJS({
-  "node_modules/rxjs/node_modules/tslib/tslib.js"(exports, module) {
-    init_virtual_process_polyfill();
-    init_buffer();
-    var __extends2;
-    var __assign2;
-    var __rest2;
-    var __decorate2;
-    var __param2;
-    var __esDecorate2;
-    var __runInitializers2;
-    var __propKey2;
-    var __setFunctionName2;
-    var __metadata2;
-    var __awaiter2;
-    var __generator2;
-    var __exportStar2;
-    var __values2;
-    var __read2;
-    var __spread2;
-    var __spreadArrays2;
-    var __spreadArray2;
-    var __await2;
-    var __asyncGenerator2;
-    var __asyncDelegator2;
-    var __asyncValues2;
-    var __makeTemplateObject2;
-    var __importStar2;
-    var __importDefault2;
-    var __classPrivateFieldGet2;
-    var __classPrivateFieldSet2;
-    var __classPrivateFieldIn2;
-    var __createBinding2;
-    (function(factory) {
-      var root = typeof globalThis === "object" ? globalThis : typeof self === "object" ? self : typeof this === "object" ? this : {};
-      if (typeof define === "function" && define.amd) {
-        define("tslib", ["exports"], function(exports2) {
-          factory(createExporter(root, createExporter(exports2)));
-        });
-      } else if (typeof module === "object" && typeof module.exports === "object") {
-        factory(createExporter(root, createExporter(module.exports)));
-      } else {
-        factory(createExporter(root));
-      }
-      function createExporter(exports2, previous) {
-        if (exports2 !== root) {
-          if (typeof Object.create === "function") {
-            Object.defineProperty(exports2, "__esModule", { value: true });
-          } else {
-            exports2.__esModule = true;
-          }
-        }
-        return function(id, v) {
-          return exports2[id] = previous ? previous(id, v) : v;
-        };
-      }
-    })(function(exporter) {
-      var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d, b) {
-        d.__proto__ = b;
-      } || function(d, b) {
-        for (var p in b)
-          if (Object.prototype.hasOwnProperty.call(b, p))
-            d[p] = b[p];
-      };
-      __extends2 = function(d, b) {
-        if (typeof b !== "function" && b !== null)
-          throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() {
-          this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-      };
-      __assign2 = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-          s = arguments[i];
-          for (var p in s)
-            if (Object.prototype.hasOwnProperty.call(s, p))
-              t[p] = s[p];
-        }
-        return t;
-      };
-      __rest2 = function(s, e) {
-        var t = {};
-        for (var p in s)
-          if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-            t[p] = s[p];
-        if (s != null && typeof Object.getOwnPropertySymbols === "function")
-          for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-              t[p[i]] = s[p[i]];
-          }
-        return t;
-      };
-      __decorate2 = function(decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-          r = Reflect.decorate(decorators, target, key, desc);
-        else
-          for (var i = decorators.length - 1; i >= 0; i--)
-            if (d = decorators[i])
-              r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-      };
-      __param2 = function(paramIndex, decorator) {
-        return function(target, key) {
-          decorator(target, key, paramIndex);
-        };
-      };
-      __esDecorate2 = function(ctor, descriptorIn, decorators, contextIn, initializers, extraInitializers) {
-        function accept(f2) {
-          if (f2 !== void 0 && typeof f2 !== "function")
-            throw new TypeError("Function expected");
-          return f2;
-        }
-        var kind = contextIn.kind, key = kind === "getter" ? "get" : kind === "setter" ? "set" : "value";
-        var target = !descriptorIn && ctor ? contextIn["static"] ? ctor : ctor.prototype : null;
-        var descriptor = descriptorIn || (target ? Object.getOwnPropertyDescriptor(target, contextIn.name) : {});
-        var _, done = false;
-        for (var i = decorators.length - 1; i >= 0; i--) {
-          var context2 = {};
-          for (var p in contextIn)
-            context2[p] = p === "access" ? {} : contextIn[p];
-          for (var p in contextIn.access)
-            context2.access[p] = contextIn.access[p];
-          context2.addInitializer = function(f2) {
-            if (done)
-              throw new TypeError("Cannot add initializers after decoration has completed");
-            extraInitializers.push(accept(f2 || null));
-          };
-          var result = (0, decorators[i])(kind === "accessor" ? { get: descriptor.get, set: descriptor.set } : descriptor[key], context2);
-          if (kind === "accessor") {
-            if (result === void 0)
-              continue;
-            if (result === null || typeof result !== "object")
-              throw new TypeError("Object expected");
-            if (_ = accept(result.get))
-              descriptor.get = _;
-            if (_ = accept(result.set))
-              descriptor.set = _;
-            if (_ = accept(result.init))
-              initializers.push(_);
-          } else if (_ = accept(result)) {
-            if (kind === "field")
-              initializers.push(_);
-            else
-              descriptor[key] = _;
-          }
-        }
-        if (target)
-          Object.defineProperty(target, contextIn.name, descriptor);
-        done = true;
-      };
-      __runInitializers2 = function(thisArg, initializers, value) {
-        var useValue = arguments.length > 2;
-        for (var i = 0; i < initializers.length; i++) {
-          value = useValue ? initializers[i].call(thisArg, value) : initializers[i].call(thisArg);
-        }
-        return useValue ? value : void 0;
-      };
-      __propKey2 = function(x) {
-        return typeof x === "symbol" ? x : "".concat(x);
-      };
-      __setFunctionName2 = function(f2, name, prefix2) {
-        if (typeof name === "symbol")
-          name = name.description ? "[".concat(name.description, "]") : "";
-        return Object.defineProperty(f2, "name", { configurable: true, value: prefix2 ? "".concat(prefix2, " ", name) : name });
-      };
-      __metadata2 = function(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-          return Reflect.metadata(metadataKey, metadataValue);
-      };
-      __awaiter2 = function(thisArg, _arguments, P, generator) {
-        function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
-            resolve(value);
-          });
-        }
-        return new (P || (P = Promise))(function(resolve, reject) {
-          function fulfilled(value) {
-            try {
-              step(generator.next(value));
-            } catch (e) {
-              reject(e);
-            }
-          }
-          function rejected(value) {
-            try {
-              step(generator["throw"](value));
-            } catch (e) {
-              reject(e);
-            }
-          }
-          function step(result) {
-            result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
-          }
-          step((generator = generator.apply(thisArg, _arguments || [])).next());
-        });
-      };
-      __generator2 = function(thisArg, body) {
-        var _ = { label: 0, sent: function() {
-          if (t[0] & 1)
-            throw t[1];
-          return t[1];
-        }, trys: [], ops: [] }, f2, y, t, g;
-        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() {
-          return this;
-        }), g;
-        function verb(n) {
-          return function(v) {
-            return step([n, v]);
-          };
-        }
-        function step(op) {
-          if (f2)
-            throw new TypeError("Generator is already executing.");
-          while (g && (g = 0, op[0] && (_ = 0)), _)
-            try {
-              if (f2 = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
-                return t;
-              if (y = 0, t)
-                op = [op[0] & 2, t.value];
-              switch (op[0]) {
-                case 0:
-                case 1:
-                  t = op;
-                  break;
-                case 4:
-                  _.label++;
-                  return { value: op[1], done: false };
-                case 5:
-                  _.label++;
-                  y = op[1];
-                  op = [0];
-                  continue;
-                case 7:
-                  op = _.ops.pop();
-                  _.trys.pop();
-                  continue;
-                default:
-                  if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-                    _ = 0;
-                    continue;
-                  }
-                  if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
-                    _.label = op[1];
-                    break;
-                  }
-                  if (op[0] === 6 && _.label < t[1]) {
-                    _.label = t[1];
-                    t = op;
-                    break;
-                  }
-                  if (t && _.label < t[2]) {
-                    _.label = t[2];
-                    _.ops.push(op);
-                    break;
-                  }
-                  if (t[2])
-                    _.ops.pop();
-                  _.trys.pop();
-                  continue;
-              }
-              op = body.call(thisArg, _);
-            } catch (e) {
-              op = [6, e];
-              y = 0;
-            } finally {
-              f2 = t = 0;
-            }
-          if (op[0] & 5)
-            throw op[1];
-          return { value: op[0] ? op[1] : void 0, done: true };
-        }
-      };
-      __exportStar2 = function(m, o) {
-        for (var p in m)
-          if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p))
-            __createBinding2(o, m, p);
-      };
-      __createBinding2 = Object.create ? function(o, m, k, k2) {
-        if (k2 === void 0)
-          k2 = k;
-        var desc = Object.getOwnPropertyDescriptor(m, k);
-        if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-          desc = { enumerable: true, get: function() {
-            return m[k];
-          } };
-        }
-        Object.defineProperty(o, k2, desc);
-      } : function(o, m, k, k2) {
-        if (k2 === void 0)
-          k2 = k;
-        o[k2] = m[k];
-      };
-      __values2 = function(o) {
-        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-        if (m)
-          return m.call(o);
-        if (o && typeof o.length === "number")
-          return {
-            next: function() {
-              if (o && i >= o.length)
-                o = void 0;
-              return { value: o && o[i++], done: !o };
-            }
-          };
-        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-      };
-      __read2 = function(o, n) {
-        var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m)
-          return o;
-        var i = m.call(o), r, ar = [], e;
-        try {
-          while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-            ar.push(r.value);
-        } catch (error) {
-          e = { error };
-        } finally {
-          try {
-            if (r && !r.done && (m = i["return"]))
-              m.call(i);
-          } finally {
-            if (e)
-              throw e.error;
-          }
-        }
-        return ar;
-      };
-      __spread2 = function() {
-        for (var ar = [], i = 0; i < arguments.length; i++)
-          ar = ar.concat(__read2(arguments[i]));
-        return ar;
-      };
-      __spreadArrays2 = function() {
-        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
-          s += arguments[i].length;
-        for (var r = Array(s), k = 0, i = 0; i < il; i++)
-          for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-        return r;
-      };
-      __spreadArray2 = function(to, from3, pack) {
-        if (pack || arguments.length === 2)
-          for (var i = 0, l = from3.length, ar; i < l; i++) {
-            if (ar || !(i in from3)) {
-              if (!ar)
-                ar = Array.prototype.slice.call(from3, 0, i);
-              ar[i] = from3[i];
-            }
-          }
-        return to.concat(ar || Array.prototype.slice.call(from3));
-      };
-      __await2 = function(v) {
-        return this instanceof __await2 ? (this.v = v, this) : new __await2(v);
-      };
-      __asyncGenerator2 = function(thisArg, _arguments, generator) {
-        if (!Symbol.asyncIterator)
-          throw new TypeError("Symbol.asyncIterator is not defined.");
-        var g = generator.apply(thisArg, _arguments || []), i, q = [];
-        return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function() {
-          return this;
-        }, i;
-        function verb(n) {
-          if (g[n])
-            i[n] = function(v) {
-              return new Promise(function(a, b) {
-                q.push([n, v, a, b]) > 1 || resume(n, v);
-              });
-            };
-        }
-        function resume(n, v) {
-          try {
-            step(g[n](v));
-          } catch (e) {
-            settle(q[0][3], e);
-          }
-        }
-        function step(r) {
-          r.value instanceof __await2 ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r);
-        }
-        function fulfill(value) {
-          resume("next", value);
-        }
-        function reject(value) {
-          resume("throw", value);
-        }
-        function settle(f2, v) {
-          if (f2(v), q.shift(), q.length)
-            resume(q[0][0], q[0][1]);
-        }
-      };
-      __asyncDelegator2 = function(o) {
-        var i, p;
-        return i = {}, verb("next"), verb("throw", function(e) {
-          throw e;
-        }), verb("return"), i[Symbol.iterator] = function() {
-          return this;
-        }, i;
-        function verb(n, f2) {
-          i[n] = o[n] ? function(v) {
-            return (p = !p) ? { value: __await2(o[n](v)), done: false } : f2 ? f2(v) : v;
-          } : f2;
-        }
-      };
-      __asyncValues2 = function(o) {
-        if (!Symbol.asyncIterator)
-          throw new TypeError("Symbol.asyncIterator is not defined.");
-        var m = o[Symbol.asyncIterator], i;
-        return m ? m.call(o) : (o = typeof __values2 === "function" ? __values2(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function() {
-          return this;
-        }, i);
-        function verb(n) {
-          i[n] = o[n] && function(v) {
-            return new Promise(function(resolve, reject) {
-              v = o[n](v), settle(resolve, reject, v.done, v.value);
-            });
-          };
-        }
-        function settle(resolve, reject, d, v) {
-          Promise.resolve(v).then(function(v2) {
-            resolve({ value: v2, done: d });
-          }, reject);
-        }
-      };
-      __makeTemplateObject2 = function(cooked, raw) {
-        if (Object.defineProperty) {
-          Object.defineProperty(cooked, "raw", { value: raw });
-        } else {
-          cooked.raw = raw;
-        }
-        return cooked;
-      };
-      var __setModuleDefault = Object.create ? function(o, v) {
-        Object.defineProperty(o, "default", { enumerable: true, value: v });
-      } : function(o, v) {
-        o["default"] = v;
-      };
-      __importStar2 = function(mod) {
-        if (mod && mod.__esModule)
-          return mod;
-        var result = {};
-        if (mod != null) {
-          for (var k in mod)
-            if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
-              __createBinding2(result, mod, k);
-        }
-        __setModuleDefault(result, mod);
-        return result;
-      };
-      __importDefault2 = function(mod) {
-        return mod && mod.__esModule ? mod : { "default": mod };
-      };
-      __classPrivateFieldGet2 = function(receiver, state, kind, f2) {
-        if (kind === "a" && !f2)
-          throw new TypeError("Private accessor was defined without a getter");
-        if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
-          throw new TypeError("Cannot read private member from an object whose class did not declare it");
-        return kind === "m" ? f2 : kind === "a" ? f2.call(receiver) : f2 ? f2.value : state.get(receiver);
-      };
-      __classPrivateFieldSet2 = function(receiver, state, value, kind, f2) {
-        if (kind === "m")
-          throw new TypeError("Private method is not writable");
-        if (kind === "a" && !f2)
-          throw new TypeError("Private accessor was defined without a setter");
-        if (typeof state === "function" ? receiver !== state || !f2 : !state.has(receiver))
-          throw new TypeError("Cannot write private member to an object whose class did not declare it");
-        return kind === "a" ? f2.call(receiver, value) : f2 ? f2.value = value : state.set(receiver, value), value;
-      };
-      __classPrivateFieldIn2 = function(state, receiver) {
-        if (receiver === null || typeof receiver !== "object" && typeof receiver !== "function")
-          throw new TypeError("Cannot use 'in' operator on non-object");
-        return typeof state === "function" ? receiver === state : state.has(receiver);
-      };
-      exporter("__extends", __extends2);
-      exporter("__assign", __assign2);
-      exporter("__rest", __rest2);
-      exporter("__decorate", __decorate2);
-      exporter("__param", __param2);
-      exporter("__esDecorate", __esDecorate2);
-      exporter("__runInitializers", __runInitializers2);
-      exporter("__propKey", __propKey2);
-      exporter("__setFunctionName", __setFunctionName2);
-      exporter("__metadata", __metadata2);
-      exporter("__awaiter", __awaiter2);
-      exporter("__generator", __generator2);
-      exporter("__exportStar", __exportStar2);
-      exporter("__createBinding", __createBinding2);
-      exporter("__values", __values2);
-      exporter("__read", __read2);
-      exporter("__spread", __spread2);
-      exporter("__spreadArrays", __spreadArrays2);
-      exporter("__spreadArray", __spreadArray2);
-      exporter("__await", __await2);
-      exporter("__asyncGenerator", __asyncGenerator2);
-      exporter("__asyncDelegator", __asyncDelegator2);
-      exporter("__asyncValues", __asyncValues2);
-      exporter("__makeTemplateObject", __makeTemplateObject2);
-      exporter("__importStar", __importStar2);
-      exporter("__importDefault", __importDefault2);
-      exporter("__classPrivateFieldGet", __classPrivateFieldGet2);
-      exporter("__classPrivateFieldSet", __classPrivateFieldSet2);
-      exporter("__classPrivateFieldIn", __classPrivateFieldIn2);
-    });
   }
 });
 
@@ -6645,7 +6148,7 @@ var Range = class {
 init_virtual_process_polyfill();
 init_buffer();
 
-// node_modules/@gmod/bbi/node_modules/pako/dist/pako.esm.mjs
+// node_modules/pako/dist/pako.esm.mjs
 init_virtual_process_polyfill();
 init_buffer();
 var Z_FIXED$1 = 4;
@@ -11066,7 +10569,6 @@ var import_localFile = __toESM(require_localFile());
 // node_modules/generic-filehandle/esm/remoteFile.js
 init_virtual_process_polyfill();
 init_buffer();
-var myGlobal = typeof window !== "undefined" ? window : typeof self !== "undefined" ? self : { fetch: void 0 };
 var RemoteFile = class {
   async getBufferFromResponse(response) {
     if (typeof response.buffer === "function") {
@@ -11081,7 +10583,7 @@ var RemoteFile = class {
   constructor(source, opts = {}) {
     this.baseOverrides = {};
     this.url = source;
-    const fetch = opts.fetch || myGlobal.fetch && myGlobal.fetch.bind(myGlobal);
+    const fetch = opts.fetch || globalThis.fetch.bind(globalThis);
     if (!fetch) {
       throw new TypeError(`no fetch function supplied, and none found in global environment`);
     }
@@ -11219,41 +10721,74 @@ init_buffer();
 init_virtual_process_polyfill();
 init_buffer();
 
-// node_modules/rxjs/node_modules/tslib/modules/index.js
+// node_modules/tslib/tslib.es6.mjs
 init_virtual_process_polyfill();
 init_buffer();
-var import_tslib = __toESM(require_tslib(), 1);
-var {
-  __extends,
-  __assign,
-  __rest,
-  __decorate,
-  __param,
-  __esDecorate,
-  __runInitializers,
-  __propKey,
-  __setFunctionName,
-  __metadata,
-  __awaiter,
-  __generator,
-  __exportStar,
-  __createBinding,
-  __values,
-  __read,
-  __spread,
-  __spreadArrays,
-  __spreadArray,
-  __await,
-  __asyncGenerator,
-  __asyncDelegator,
-  __asyncValues,
-  __makeTemplateObject,
-  __importStar,
-  __importDefault,
-  __classPrivateFieldGet,
-  __classPrivateFieldSet,
-  __classPrivateFieldIn
-} = import_tslib.default;
+var extendStatics = function(d, b) {
+  extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
+    d2.__proto__ = b2;
+  } || function(d2, b2) {
+    for (var p in b2)
+      if (Object.prototype.hasOwnProperty.call(b2, p))
+        d2[p] = b2[p];
+  };
+  return extendStatics(d, b);
+};
+function __extends(d, b) {
+  if (typeof b !== "function" && b !== null)
+    throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+  extendStatics(d, b);
+  function __() {
+    this.constructor = d;
+  }
+  d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+}
+function __values(o) {
+  var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+  if (m)
+    return m.call(o);
+  if (o && typeof o.length === "number")
+    return {
+      next: function() {
+        if (o && i >= o.length)
+          o = void 0;
+        return { value: o && o[i++], done: !o };
+      }
+    };
+  throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+}
+function __read(o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m)
+    return o;
+  var i = m.call(o), r, ar = [], e;
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+      ar.push(r.value);
+  } catch (error) {
+    e = { error };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"]))
+        m.call(i);
+    } finally {
+      if (e)
+        throw e.error;
+    }
+  }
+  return ar;
+}
+function __spreadArray(to, from3, pack) {
+  if (pack || arguments.length === 2)
+    for (var i = 0, l = from3.length, ar; i < l; i++) {
+      if (ar || !(i in from3)) {
+        if (!ar)
+          ar = Array.prototype.slice.call(from3, 0, i);
+        ar[i] = from3[i];
+      }
+    }
+  return to.concat(ar || Array.prototype.slice.call(from3));
+}
 
 // node_modules/rxjs/dist/esm5/internal/util/isFunction.js
 init_virtual_process_polyfill();

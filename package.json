@@ -15,15 +15,9 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "exports": {
-    "./*": {
-      "import": "./dist/*.js",
-      "require": "./dist/*.js"
-    },
-    "./dist/*": {
-      "import": "./dist/*",
-      "require": "./dist/*"
-    },
-    "./src/*": "./src/*.js"
+    ".": {
+      "import": "./dist/index.js"
+    }
   },
   "files": [
     "src",
@@ -58,7 +52,7 @@
   },
   "dependencies": {
     "@gmod/bbi": "^3.0.1",
-    "generic-filehandle": "^3.0.1",
+    "apr144-generic-filehandle": "3.1.1-020624-002",
     "d3-scale": "^1.0.7",
     "d3-dsv": "^3.0.1",
     "d3-request": "^1.0.6",
