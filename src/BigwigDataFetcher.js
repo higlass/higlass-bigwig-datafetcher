@@ -186,6 +186,8 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
 
         validTileIds.push(tileId);
         tilePromises.push(this.tile(z, x));
+
+        // console.log(`[BBIdf] Fetched tile ${z}, ${x} | tileId: ${tileId} | tilePromises: ${JSON.stringify(tilePromises, null, 2)}`);
       }
 
       Promise.all(tilePromises).then((values) => {
@@ -196,8 +198,10 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
         }
 
         receivedTiles(tiles);
+        // console.log(`[BBIdf] tiles: ${JSON.stringify(tiles, null, 2)}`);
       });
       // tiles = tileResponseToData(tiles, null, tileIds);
+
       return tiles;
     }
 
@@ -324,6 +328,9 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
           tile.denseDataExtrema = dde;
           tile.minNonZero = dde.minNonZeroInTile;
           tile.maxNonZero = dde.maxNonZeroInTile;
+
+          // console.log(`tile ${JSON.stringify(tile.tilePos)}: ${tile.min_value} - ${tile.max_value}`);
+
           return tile;
         });
       });
