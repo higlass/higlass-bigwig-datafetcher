@@ -10686,14 +10686,8 @@ init_virtual_process_polyfill();
 init_buffer();
 var RemoteFile = class {
   async getBufferFromResponse(response) {
-    if (typeof response.buffer === "function") {
-      return response.buffer();
-    } else if (typeof response.arrayBuffer === "function") {
-      const resp = await response.arrayBuffer();
-      return Buffer3.from(resp);
-    } else {
-      throw new TypeError("invalid HTTP response object, has no buffer method, and no arrayBuffer method");
-    }
+    const resp = await response.arrayBuffer();
+    return Buffer3.from(resp);
   }
   constructor(source, opts = {}) {
     this.baseOverrides = {};
@@ -10753,7 +10747,7 @@ var RemoteFile = class {
       const bytesCopied = responseData.copy(buffer, offset, 0, Math.min(length, responseData.length));
       const res = response.headers.get("content-range");
       const sizeMatch = /\/(\d+)$/.exec(res || "");
-      if (sizeMatch && sizeMatch[1]) {
+      if (sizeMatch === null || sizeMatch === void 0 ? void 0 : sizeMatch[1]) {
         this._stat = { size: parseInt(sizeMatch[1], 10) };
       }
       return { bytesRead: bytesCopied, buffer };
@@ -10816,13 +10810,16 @@ var RemoteFile = class {
   }
 };
 
+// node_modules/generic-filehandle/esm/filehandle.js
+init_virtual_process_polyfill();
+init_buffer();
+
 // node_modules/generic-filehandle/esm/blobFile.js
 init_virtual_process_polyfill();
 init_buffer();
 
-// node_modules/generic-filehandle/esm/filehandle.js
-init_virtual_process_polyfill();
-init_buffer();
+// node_modules/generic-filehandle/esm/index.js
+var import_localFile2 = __toESM(require_localFile());
 
 // node_modules/rxjs/dist/esm5/index.js
 init_virtual_process_polyfill();
@@ -11680,7 +11677,7 @@ var BBI = class {
     } else if (url) {
       this.bbi = new RemoteFile(url);
     } else if (path) {
-      this.bbi = new import_localFile.default(path);
+      this.bbi = new import_localFile2.default(path);
     } else {
       throw new Error("no file given");
     }
@@ -11838,7 +11835,7 @@ var import_quick_lru2 = __toESM(require_quick_lru());
 // node_modules/apr144-generic-filehandle/esm/index.js
 init_virtual_process_polyfill();
 init_buffer();
-var import_localFile2 = __toESM(require_localFile2());
+var import_localFile3 = __toESM(require_localFile2());
 
 // node_modules/apr144-generic-filehandle/esm/remoteFile.js
 init_virtual_process_polyfill();
@@ -11906,7 +11903,7 @@ var RemoteFile2 = class {
       },
       method: "GET",
       redirect: "follow",
-      mode: "cors",
+      mode: "no-cors",
       signal
     };
     const response = await this.fetch(this.url, args);
@@ -11950,7 +11947,7 @@ var RemoteFile2 = class {
       headers,
       method: "GET",
       redirect: "follow",
-      mode: "cors",
+      mode: "no-cors",
       signal,
       ...this.baseOverrides,
       ...overrides
