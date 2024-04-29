@@ -1,6 +1,6 @@
 import slugid from "slugid";
 import { BigWig } from "@gmod/bbi";
-import { RemoteFile } from "generic-filehandle";
+import { RemoteFile } from "apr144-generic-filehandle";
 import { tsvParseRows } from "d3-dsv";
 import { text } from "d3-request";
 
@@ -111,7 +111,7 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
         if (username && password) {
           dataConfig.url = `${url.protocol}//${url.host}${url.pathname}${url.search}`;
           this.bwFile = new BigWig({
-            filehandle: new RemoteFile(dataConfig.url, { auth: { username, password } }),
+            filehandle: new RemoteFile(dataConfig.url, { auth: { user: username, password: password } }),
           });
         }
         else {
