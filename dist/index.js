@@ -11903,7 +11903,7 @@ var RemoteFile2 = class {
       },
       method: "GET",
       redirect: "follow",
-      mode: "no-cors",
+      mode: "cors",
       signal
     };
     const response = await this.fetch(this.url, args);
@@ -11947,11 +11947,12 @@ var RemoteFile2 = class {
       headers,
       method: "GET",
       redirect: "follow",
-      mode: "no-cors",
+      mode: "cors",
       signal,
       ...this.baseOverrides,
       ...overrides
     };
+    console.log(`headers: ${JSON.stringify(headers)}`);
     const response = await this.fetch(this.url, args);
     if (!response) {
       throw new Error("generic-filehandle failed to fetch");

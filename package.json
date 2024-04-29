@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@gmod/bbi": "^3.0.1",
-    "apr144-generic-filehandle": "3.1.1-042624-001",
+    "apr144-generic-filehandle": "3.1.1-042624-002",
     "d3-scale": "^1.0.7",
     "d3-dsv": "^3.0.1",
     "d3-request": "^1.0.6",
