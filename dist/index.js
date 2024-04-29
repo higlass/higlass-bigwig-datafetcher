@@ -3230,6 +3230,121 @@ var require_localFile = __commonJS({
   }
 });
 
+// (disabled):node_modules/apr144-generic-filehandle/esm/localFile
+var require_localFile2 = __commonJS({
+  "(disabled):node_modules/apr144-generic-filehandle/esm/localFile"() {
+    init_virtual_process_polyfill();
+    init_buffer();
+  }
+});
+
+// node_modules/base-64/base64.js
+var require_base64 = __commonJS({
+  "node_modules/base-64/base64.js"(exports, module) {
+    init_virtual_process_polyfill();
+    init_buffer();
+    (function(root) {
+      var freeExports = typeof exports == "object" && exports;
+      var freeModule = typeof module == "object" && module && module.exports == freeExports && module;
+      var freeGlobal = typeof globalThis == "object" && globalThis;
+      if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
+        root = freeGlobal;
+      }
+      var InvalidCharacterError = function(message) {
+        this.message = message;
+      };
+      InvalidCharacterError.prototype = new Error();
+      InvalidCharacterError.prototype.name = "InvalidCharacterError";
+      var error = function(message) {
+        throw new InvalidCharacterError(message);
+      };
+      var TABLE2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+      var REGEX_SPACE_CHARACTERS = /[\t\n\f\r ]/g;
+      var decode = function(input) {
+        input = String(input).replace(REGEX_SPACE_CHARACTERS, "");
+        var length = input.length;
+        if (length % 4 == 0) {
+          input = input.replace(/==?$/, "");
+          length = input.length;
+        }
+        if (length % 4 == 1 || /[^+a-zA-Z0-9/]/.test(input)) {
+          error(
+            "Invalid character: the string to be decoded is not correctly encoded."
+          );
+        }
+        var bitCounter = 0;
+        var bitStorage;
+        var buffer;
+        var output = "";
+        var position = -1;
+        while (++position < length) {
+          buffer = TABLE2.indexOf(input.charAt(position));
+          bitStorage = bitCounter % 4 ? bitStorage * 64 + buffer : buffer;
+          if (bitCounter++ % 4) {
+            output += String.fromCharCode(
+              255 & bitStorage >> (-2 * bitCounter & 6)
+            );
+          }
+        }
+        return output;
+      };
+      var encode2 = function(input) {
+        input = String(input);
+        if (/[^\0-\xFF]/.test(input)) {
+          error(
+            "The string to be encoded contains characters outside of the Latin1 range."
+          );
+        }
+        var padding = input.length % 3;
+        var output = "";
+        var position = -1;
+        var a;
+        var b;
+        var c;
+        var buffer;
+        var length = input.length - padding;
+        while (++position < length) {
+          a = input.charCodeAt(position) << 16;
+          b = input.charCodeAt(++position) << 8;
+          c = input.charCodeAt(++position);
+          buffer = a + b + c;
+          output += TABLE2.charAt(buffer >> 18 & 63) + TABLE2.charAt(buffer >> 12 & 63) + TABLE2.charAt(buffer >> 6 & 63) + TABLE2.charAt(buffer & 63);
+        }
+        if (padding == 2) {
+          a = input.charCodeAt(position) << 8;
+          b = input.charCodeAt(++position);
+          buffer = a + b;
+          output += TABLE2.charAt(buffer >> 10) + TABLE2.charAt(buffer >> 4 & 63) + TABLE2.charAt(buffer << 2 & 63) + "=";
+        } else if (padding == 1) {
+          buffer = input.charCodeAt(position);
+          output += TABLE2.charAt(buffer >> 2) + TABLE2.charAt(buffer << 4 & 63) + "==";
+        }
+        return output;
+      };
+      var base64 = {
+        "encode": encode2,
+        "decode": decode,
+        "version": "1.0.0"
+      };
+      if (typeof define == "function" && typeof define.amd == "object" && define.amd) {
+        define(function() {
+          return base64;
+        });
+      } else if (freeExports && !freeExports.nodeType) {
+        if (freeModule) {
+          freeModule.exports = base64;
+        } else {
+          for (var key in base64) {
+            base64.hasOwnProperty(key) && (freeExports[key] = base64[key]);
+          }
+        }
+      } else {
+        root.base64 = base64;
+      }
+    })(exports);
+  }
+});
+
 // src/index.js
 init_virtual_process_polyfill();
 init_buffer();
@@ -11720,6 +11835,169 @@ init_buffer();
 var import_abortable_promise_cache2 = __toESM(require_esm());
 var import_quick_lru2 = __toESM(require_quick_lru());
 
+// node_modules/apr144-generic-filehandle/esm/index.js
+init_virtual_process_polyfill();
+init_buffer();
+var import_localFile2 = __toESM(require_localFile2());
+
+// node_modules/apr144-generic-filehandle/esm/remoteFile.js
+init_virtual_process_polyfill();
+init_buffer();
+var import_base_64 = __toESM(require_base64());
+var RemoteFile2 = class {
+  async getBufferFromResponse(response) {
+    if (typeof response.buffer === "function") {
+      return response.buffer();
+    } else if (typeof response.arrayBuffer === "function") {
+      const resp = await response.arrayBuffer();
+      return Buffer3.from(resp);
+    } else {
+      throw new TypeError("invalid HTTP response object, has no buffer method, and no arrayBuffer method");
+    }
+  }
+  constructor(source, opts = {}) {
+    this.auth = {};
+    this.baseOverrides = {};
+    this.url = source;
+    this.auth = opts.auth || {};
+    const fetch = opts.fetch || globalThis.fetch.bind(globalThis);
+    if (!fetch) {
+      throw new TypeError(`no fetch function supplied, and none found in global environment`);
+    }
+    if (opts.overrides) {
+      this.baseOverrides = opts.overrides;
+    }
+    this.fetchImplementation = fetch;
+  }
+  async fetch(input, init3) {
+    let response;
+    try {
+      response = await this.fetchImplementation(input, init3);
+    } catch (e) {
+      if (`${e}`.includes("Failed to fetch")) {
+        console.warn(`generic-filehandle: refetching ${input} to attempt to work around chrome CORS header caching bug`);
+        response = await this.fetchImplementation(input, {
+          ...init3,
+          cache: "reload"
+        });
+      } else {
+        throw e;
+      }
+    }
+    return response;
+  }
+  async read(buffer, offset = 0, length, position = 0, opts = {}) {
+    const { headers = {}, signal, overrides = {} } = opts;
+    if (length < Infinity) {
+      headers.range = `bytes=${position}-${position + length}`;
+    } else if (length === Infinity && position !== 0) {
+      headers.range = `bytes=${position}-`;
+    }
+    if (this.auth && this.auth.user && this.auth.password) {
+      headers.Authorization = `Basic ${(0, import_base_64.encode)(this.auth.user + ":" + this.auth.password)}`;
+    }
+    const args = {
+      ...this.baseOverrides,
+      ...overrides,
+      headers: {
+        ...headers,
+        ...overrides.headers,
+        ...this.baseOverrides.headers
+      },
+      method: "GET",
+      redirect: "follow",
+      mode: "cors",
+      signal
+    };
+    const response = await this.fetch(this.url, args);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status} ${response.statusText} ${this.url}`);
+    }
+    if (response.status === 200 && position === 0 || response.status === 206) {
+      const responseData = await this.getBufferFromResponse(response);
+      const bytesCopied = responseData.copy(buffer, offset, 0, Math.min(length, responseData.length));
+      const res = response.headers.get("content-range");
+      const sizeMatch = /\/(\d+)$/.exec(res || "");
+      if (sizeMatch && sizeMatch[1]) {
+        this._stat = { size: parseInt(sizeMatch[1], 10) };
+      }
+      return { bytesRead: bytesCopied, buffer };
+    }
+    if (response.status === 200) {
+      throw new Error("${this.url} fetch returned status 200, expected 206");
+    }
+    if (response.status === 404) {
+      return { bytesRead: 0, buffer };
+    }
+    throw new Error(`HTTP ${response.status} fetching ${this.url}`);
+  }
+  async readFile(options = {}) {
+    let encoding;
+    let opts;
+    if (typeof options === "string") {
+      encoding = options;
+      opts = {};
+    } else {
+      encoding = options.encoding;
+      opts = options;
+      delete opts.encoding;
+    }
+    const { headers = {}, signal, overrides = {} } = opts;
+    if (this.auth && this.auth.user && this.auth.password) {
+      headers.Authorization = `Basic ${(0, import_base_64.encode)(this.auth.user + ":" + this.auth.password)}`;
+    }
+    const args = {
+      headers,
+      method: "GET",
+      redirect: "follow",
+      mode: "cors",
+      signal,
+      ...this.baseOverrides,
+      ...overrides
+    };
+    const response = await this.fetch(this.url, args);
+    if (!response) {
+      throw new Error("generic-filehandle failed to fetch");
+    }
+    if (response.status === 404) {
+      return Buffer3.alloc(1);
+    }
+    if (response.status !== 200) {
+      throw Object.assign(new Error(`HTTP ${response.status} fetching ${this.url}`), {
+        status: response.status
+      });
+    }
+    if (encoding === "utf8") {
+      return response.text();
+    }
+    if (encoding) {
+      throw new Error(`unsupported encoding: ${encoding}`);
+    }
+    return this.getBufferFromResponse(response);
+  }
+  async stat() {
+    if (!this._stat) {
+      const buf = Buffer3.allocUnsafe(10);
+      await this.read(buf, 0, 10, 0);
+      if (!this._stat) {
+        throw new Error(`unable to determine size of file at ${this.url}`);
+      }
+    }
+    return this._stat;
+  }
+  async close() {
+    return;
+  }
+};
+
+// node_modules/apr144-generic-filehandle/esm/blobFile.js
+init_virtual_process_polyfill();
+init_buffer();
+
+// node_modules/apr144-generic-filehandle/esm/filehandle.js
+init_virtual_process_polyfill();
+init_buffer();
+
 // node_modules/d3-dsv/src/index.js
 init_virtual_process_polyfill();
 init_buffer();
@@ -12584,11 +12862,11 @@ var BBIDataFetcher = function BBIDataFetcher2(HGC, ...args) {
         if (username && password) {
           dataConfig.url = `${url.protocol}//${url.host}${url.pathname}${url.search}`;
           this.bwFile = new BigWig({
-            filehandle: new RemoteFile(dataConfig.url, { auth: { username, password } })
+            filehandle: new RemoteFile2(dataConfig.url, { auth: { user: username, password } })
           });
         } else {
           this.bwFile = new BigWig({
-            filehandle: new RemoteFile(dataConfig.url)
+            filehandle: new RemoteFile2(dataConfig.url)
           });
         }
         return this.bwFile.getHeader().then((h) => {
@@ -12784,5 +13062,6 @@ export {
  * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
  * @license  MIT
  */
+/*! https://mths.be/base64 v1.0.0 by @mathias | MIT license */
 /*! pako 2.1.0 https://github.com/nodeca/pako @license (MIT AND Zlib) */
 //# sourceMappingURL=index.js.map
