@@ -49,7 +49,7 @@ For an example, see [`src/index.html`](src/index.html).
 
 ### Basic authentication
 
-To load data from a bigWig file hosted on a site that uses Basic authentication, add the username and password to the URL. For example: `http://username:password@example.com/data.bw`. This would be used in the view configuration `url` property, *e.g.*,:
+Bigwig files may be hosted on a website that uses Basic authentication to limit access. To load data from a bigWig file hosted on a site that uses Basic authentication, add the username and password to the URL. For example: `http://username:password@example.com/data.bw`. This would be used in the view configuration `url` property, *e.g.*,:
 
 ```
 [...
