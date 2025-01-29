@@ -47,6 +47,27 @@ Note that the `chromSizesUrl` option is required.
 
 For an example, see [`src/index.html`](src/index.html).
 
+### Basic authentication
+
+To load data from a bigWig file hosted on a site that uses Basic authentication, add the username and password to the URL. For example: `http://username:password@example.com/data.bw`. This would be used in the view configuration `url` property, *e.g.*,:
+
+```
+[...
+  {
+    "type": "bar",
+    "height": 80,
+    "data": {
+      "type": "bbi",
+      "url": "http://username:password@example.com/data.bw",
+      "chromSizesUrl": "https://aveit.s3.amazonaws.com/higlass/data/sequence/hg38.chrom.sizes",
+    },
+    "options": {
+      ...
+    }
+    
+  }
+]
+```
 
 ## Development
 
