@@ -1,6 +1,6 @@
 import slugid from "slugid";
 import { BigWig } from "@gmod/bbi";
-import { RemoteFile } from "generic-filehandle";
+import { RemoteFile } from "apr144-generic-filehandle";
 import { tsvParseRows } from "d3-dsv";
 import { text } from "d3-request";
 
@@ -103,9 +103,22 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
 
     loadBBI(dataConfig) {
       if (dataConfig.url) {
-        this.bwFile = new BigWig({
-          filehandle: new RemoteFile(dataConfig.url),
-        });
+        // look for Basic credentials in the URL; if present, extract
+        // them and use them to create an authenticated RemoteFile object
+        let url = new URL(dataConfig.url);
+        const username = url.username;
+        const password = url.password;
+        if (username && password) {
+          dataConfig.url = `${url.protocol}//${url.host}${url.pathname}${url.search}`;
+          this.bwFile = new BigWig({
+            filehandle: new RemoteFile(dataConfig.url, { auth: { user: username, password: password } }),
+          });
+        }
+        else {
+          this.bwFile = new BigWig({
+            filehandle: new RemoteFile(dataConfig.url),
+          });
+        }
         return this.bwFile.getHeader().then((h) => {
           this.bwFileHeader = h;
         });
@@ -185,6 +198,7 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
         receivedTiles(tiles);
       });
       // tiles = tileResponseToData(tiles, null, tileIds);
+
       return tiles;
     }
 
@@ -311,6 +325,7 @@ const BBIDataFetcher = function BBIDataFetcher(HGC, ...args) {
           tile.denseDataExtrema = dde;
           tile.minNonZero = dde.minNonZeroInTile;
           tile.maxNonZero = dde.maxNonZeroInTile;
+
           return tile;
         });
       });
